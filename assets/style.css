@@ -4,5 +4,7 @@ body {
 
 .homepage {
     margin-top: 15%;
-    margin-left: 15%
+    margin-left: 15%;
+    border-radius: 20px;
+    
 }

@@ -1,14 +1,16 @@
-var searchButton = $('.searchbutton');
-var searchValue = $('.search-bar').val();
+var searchForm = document.querySelector('.searchform');
+// var searchValue = document.querySelector('.search-bar');
 
 function handleSearch(event) {
     event.preventDefault();
-    if (!searchvalue) {
+    var searchValue=document.querySelector('.search-bar').value;
+    if (!searchValue) {
         console.error ('Please type your city in the search bar!');
         return;
     }
-    var queryString = './search-results.html?q=' + searchValue;
+    var queryString = './search-results.html';
+
     location.assign(queryString);
 
 }
-searchButton.on('submit', handleSearch);
+searchForm.addEventListener('submit', handleSearch);
