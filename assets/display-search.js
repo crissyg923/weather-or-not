@@ -6,7 +6,7 @@ var weatherIcon=document.getElementById('weathericon');
 var icon =document.getElementById('icon');
 var dayOne=document.getElementById('day1');
 var dayTwo=document.getElementById('day2');
-
+var cardHolderEl=document.querySelector('.cardholder');
 
 
 var APIKey = "5bb4a513963831304c84229f4658d043";
@@ -32,31 +32,40 @@ var printCurrentWeather= function(data2) {
     icon.setAttribute('src', iconLink);
     // weatherIcon.innerHTML= iconLink;
 }
+ 
 
-var printNoww = function(fiveDayArray) {
-   console.log(fiveDayArray[3]);
-   console.log(fiveDayArray[11]);
-   console.log(fiveDayArray[19]);
-   console.log(fiveDayArray[27]);
-   console.log(fiveDayArray[35]);
-   var day1=fiveDayArray[3];
-   var day2=fiveDayArray[11];
-   var day3=fiveDayArray[19];
-   var day4=fiveDayArray[27];
-   var day5=fiveDayArray[35];
-   var displayContainer=document.createElement("div");
-   displayContainer.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
-   var displayDayOne=document.createElement("div");
-   displayDayOne.classList.add('card-body', 'customcard');
-   displayContainer.append(displayDayOne);
-   var dayOneDate= day1.dt_txt.split(" ")[0];
-   console.log(dayOneDate);
-   dayOneFormattedDate = dayjs(dayOneDate).format('M/D/YYYY');
-   console.log(dayOneFormattedDate);
-   var dateDisplay=document.createElement("p");
-   dateDisplay.textContent=dayOneFormattedDate;
-   dayOne.appendChild(displayContainer);
-   displayContainer.appendChild(dateDisplay);
+var filterList = function(fiveDayArray) {
+//    console.log(fiveDayArray[3]);
+//    console.log(fiveDayArray[11]);
+//    console.log(fiveDayArray[19]);
+//    console.log(fiveDayArray[27]);
+//    console.log(fiveDayArray[35]);
+// //    Data needed for 5-day Forecast
+//    var day1=fiveDayArray[3];
+//    var day2=fiveDayArray[11];
+//    var day3=fiveDayArray[19];
+//    var day4=fiveDayArray[27];
+//    var day5=fiveDayArray[35];
+for (var i=0; i<fiveDayArray.length;i+=8) {
+    console.log(fiveDayArray[i]);
+    renderFiveDayForecast(fiveDayArray[i]);
+
+}
+
+//    var dayOneDate= day1.dt_txt.split(" ")[0];
+//    console.log(dayOneDate);
+//    dayOneFormattedDate = dayjs(dayOneDate).format('M/D/YYYY');
+//    console.log(dayOneFormattedDate);
+//    var dateDisplay=document.createElement("p");
+//    dateDisplay.textContent=dayOneFormattedDate;
+// var fiveDayCardHolder = document.createElement("div");
+// fiveDayCardHolder.classList.add('card');
+// fiveDayCardHolder.textContent=dateDisplay;
+// cardHolderEl.appendChild(fiveDayCardHolder);
+
+
+
+   dayOne.appendChild(dateDisplay);
    
 }
 
@@ -64,7 +73,7 @@ var printFiveDay= function(data1) {
 console.log(data1);
 console.log(data1.list[2]);
 var fiveDayArray=(data1.list);
-printNoww(fiveDayArray);
+filterList(fiveDayArray);
 }
 
 
