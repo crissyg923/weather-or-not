@@ -1,3 +1,4 @@
+// Global variables referencing HTML DOM Elements
 var cityName=document.getElementById('cityname');
 var currentTemp=document.getElementById('temp');
 var currentWind=document.getElementById('wind');
@@ -8,6 +9,7 @@ var dayOne=document.getElementById('day1');
 var dayTwo=document.getElementById('day2');
 var cardHolderEl=document.querySelector('.cardholder');
 
+// Function to save search results to local storage
 var saveLocal = function(query) {
     var searchHistoryEl=document.getElementById('searchhistorylist');
     console.log(query);
@@ -19,7 +21,9 @@ var saveLocal = function(query) {
     localStorage.setItem(query, historyButton);
 }
 
+// Variable to hold API Key
 var APIKey = "5bb4a513963831304c84229f4658d043";
+
 // Function to grab contents of search 
 var getParameters = function (){
     // retrieveLocal();
@@ -29,11 +33,9 @@ var getParameters = function (){
     saveLocal(query);
 }
 
-
+// Function to print current weather conditions
 var printCurrentWeather= function(data2) {
-    // console.log(data2);
-    // console.log(data2.name);
-    // console.log(data2.main['temp']);
+    
     cityName.innerHTML=data2.name;
     currentTemp.innerHTML="Current Temeperature: " + data2.main['temp'];
     currentWind.innerHTML="Current Wind: " + data2.wind['speed'] + " mph";
@@ -46,18 +48,8 @@ var printCurrentWeather= function(data2) {
 }
  
 
+// Function to filter returned API array and render info on page into cards
 var filterList = function(fiveDayArray) {
-//    console.log(fiveDayArray[3]);
-//    console.log(fiveDayArray[11]);
-//    console.log(fiveDayArray[19]);
-//    console.log(fiveDayArray[27]);
-//    console.log(fiveDayArray[35]);
-// //    Data needed for 5-day Forecast
-//    var day1=fiveDayArray[3];
-//    var day2=fiveDayArray[11];
-//    var day3=fiveDayArray[19];
-//    var day4=fiveDayArray[27];
-//    var day5=fiveDayArray[35];
 
 for (var i=0; i<fiveDayArray.length;i+=8) {
     console.log(fiveDayArray[i]);
@@ -82,32 +74,11 @@ for (var i=0; i<fiveDayArray.length;i+=8) {
     fiveDayCards.appendChild(humidityEl);
 
     cardHolderEl.appendChild(fiveDayCards);
-    // var date=parseInt(fiveDayArray[2].dt_text.split(" ")[0]);
-    // console.log(date);
-    // // var formattedDate = dayjs(fiveDayArray[i].dt_text.split(" ")[]).format('M/D/YYYY');
-    // console.log(formattedDate);
-
-    // renderFiveDayForecast(fiveDayArray[i]);
-
-}
-
-
-//    var dayOneDate= day1.dt_txt.split(" ")[0];
-//    console.log(dayOneDate);
-//    dayOneFormattedDate = dayjs(dayOneDate).format('M/D/YYYY');
-//    console.log(dayOneFormattedDate);
-//    var dateDisplay=document.createElement("p");
-//    dateDisplay.textContent=dayOneFormattedDate;
-// var fiveDayCardHolder = document.createElement("div");
-// fiveDayCardHolder.classList.add('card');
-// fiveDayCardHolder.textContent=dateDisplay;
-// cardHolderEl.appendChild(fiveDayCardHolder);
-
-
-
-//    dayOne.appendChild(dateDisplay);
    
 }
+}
+
+// Function to print data to console
 
 var printFiveDay= function(data1) {
 console.log(data1);
@@ -116,7 +87,7 @@ var fiveDayArray=(data1.list);
 filterList(fiveDayArray);
 }
 
-
+// Function to request API as a result of user's search input
 function getAPI(query) {
     var requestURL="http://api.openweathermap.org/geo/1.0/direct?q=" + query + ",US&limit=5&appid=5bb4a513963831304c84229f4658d043"; 
     fetch(requestURL)
@@ -154,4 +125,7 @@ function getAPI(query) {
         
      
 }
+// var citySearchBar = document.querySelector('.citysearchbar').value;
+// var newCitySearch = document.querySelector('.citysearch');
+// newCitySearch.addEventListener('submit', getParameters(citySearchBar));
 getParameters();
