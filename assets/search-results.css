@@ -17,3 +17,9 @@ header {
     margin: 5px;
     
 }
+
+.fivedaycard {
+    border: solid black;
+    margin: 5px;
+    padding: 5px;
+}

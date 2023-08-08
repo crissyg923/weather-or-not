@@ -46,11 +46,39 @@ var filterList = function(fiveDayArray) {
 //    var day3=fiveDayArray[19];
 //    var day4=fiveDayArray[27];
 //    var day5=fiveDayArray[35];
+
 for (var i=0; i<fiveDayArray.length;i+=8) {
     console.log(fiveDayArray[i]);
-    renderFiveDayForecast(fiveDayArray[i]);
+    var fiveDayCards = document.createElement('div');
+    var weatherIconEl = document.createElement('img');
+    var temperatureEl = document.createElement('p');
+    var windEl = document.createElement('p');
+    var humidityEl= document.createElement('p');
+    var futureWeatherIcon = fiveDayArray[i].weather[0]['icon'];
+    var futureWeatherIconLink = 'https://openweathermap.org/img/wn/' + futureWeatherIcon + '@2x.png';
+    weatherIconEl.setAttribute('src', futureWeatherIconLink);
+    var temperature = fiveDayArray[i].main['temp'];
+    var windConditions = fiveDayArray[i].wind['speed'];
+    var humidityConditions= fiveDayArray[i].main['humidity'];
+    temperatureEl.innerHTML = temperature + "°F";
+    windEl.innerHTML = windConditions + " mph";
+    humidityEl.innerHTML = humidityConditions + "%";
+    fiveDayCards.classList.add('fivedaycard');
+    fiveDayCards.appendChild(weatherIconEl)
+    fiveDayCards.appendChild(temperatureEl);
+    fiveDayCards.appendChild(windEl);
+    fiveDayCards.appendChild(humidityEl);
+
+    cardHolderEl.appendChild(fiveDayCards);
+    // var date=parseInt(fiveDayArray[2].dt_text.split(" ")[0]);
+    // console.log(date);
+    // // var formattedDate = dayjs(fiveDayArray[i].dt_text.split(" ")[]).format('M/D/YYYY');
+    // console.log(formattedDate);
+
+    // renderFiveDayForecast(fiveDayArray[i]);
 
 }
+
 
 //    var dayOneDate= day1.dt_txt.split(" ")[0];
 //    console.log(dayOneDate);
@@ -65,7 +93,7 @@ for (var i=0; i<fiveDayArray.length;i+=8) {
 
 
 
-   dayOne.appendChild(dateDisplay);
+//    dayOne.appendChild(dateDisplay);
    
 }
 
