@@ -1,6 +1,7 @@
 var searchForm = document.querySelector('.searchform');
 // var searchValue = document.querySelector('.search-bar');
 
+
 function handleSearch(event) {
     event.preventDefault();
     var searchValue=document.querySelector('.search-bar').value;

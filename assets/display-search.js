@@ -8,13 +8,25 @@ var dayOne=document.getElementById('day1');
 var dayTwo=document.getElementById('day2');
 var cardHolderEl=document.querySelector('.cardholder');
 
+var saveLocal = function(query) {
+    var searchHistoryEl=document.getElementById('searchhistorylist');
+    console.log(query);
+    var historyButton=document.createElement('a');
+    historyButton.innerHTML = query;
+    historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + query);
+    
+    searchHistoryEl.appendChild(historyButton);
+    localStorage.setItem(query, historyButton);
+}
 
 var APIKey = "5bb4a513963831304c84229f4658d043";
 // Function to grab contents of search 
 var getParameters = function (){
+    // retrieveLocal();
     var searchParameters=document.location.search.split('&');
     var query = searchParameters[0].split('=').pop();
     getAPI(query);
+    saveLocal(query);
 }
 
 
