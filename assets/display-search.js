@@ -8,19 +8,17 @@ var icon =document.getElementById('icon');
 var dayOne=document.getElementById('day1');
 var dayTwo=document.getElementById('day2');
 var cardHolderEl=document.querySelector('.cardholder');
+// var citySearchBar = document.querySelector('#citysearchbar');
+var newCitySearch = document.querySelector('#citysearchform');
+
+var newSearchHistoryArray=[];
 
 // Function to save search results to local storage
-var saveLocal = function(query) {
-    // console.log(query);
+var getLocal = function() {
+    
     var searchHistoryEl=document.getElementById('searchhistorylist');
     searchHistoryEl.textContent="";
-    // console.log(query);
     
-    // historyButton.innerHTML = query;
-    // historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + query);
-    
-    
-    // localStorage.setItem(query, historyButton);
 
     var searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     for (var i=0; i<searchHistory.length; i++) {
@@ -30,7 +28,51 @@ var saveLocal = function(query) {
         searchHistoryEl.appendChild(historyButton);
     
     }
+}
 
+var getNewLocal=function (){
+ var searchHistory2 = JSON.parse(localStorage.getItem('newSearchHistory'));
+ var searchHistoryEl=document.getElementById('searchhistorylist');
+ if(!searchHistory2){
+    console.log('No Search History Found');
+ }
+ else {
+    for (var i=0; i<searchHistory2.length; i++) {
+        var historyButton=document.createElement('a');
+        historyButton.innerHTML=searchHistory2[i] + "<br>";
+        historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + searchHistory2[i]);
+        searchHistoryEl.appendChild(historyButton);
+    
+    }
+}
+   
+}  
+    
+
+
+
+var saveLocal = function (citySearchBar) {
+    // var searchHistoryEl=document.getElementById('searchhistorylist');
+    
+    newSearchHistoryArray.push(citySearchBar);
+
+    localStorage.setItem('newSearchHistory', JSON.stringify(newSearchHistoryArray));
+
+    // for (var i=0; i<newSearchHistoryArray.length; i++) {
+    //     var historyButton=document.createElement('a');
+    //     historyButton.innerHTML=newSearchHistoryArray[i] + "<br>";
+    //     historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + newSearchHistoryArray[i]);
+    //     searchHistoryEl.appendChild(historyButton);
+    
+    // }
+//     if(localStorage.getItem('newSearchHistory')) {
+//         newSearchHistory= JSON.parse(localStorage.getItem('newSearchHistory'));
+//         newSearchHistory.push(citySearchBar);
+//         // localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+// }
+
+
+// JSON.parse(localStorage.getItem(newSearchHistory));
 }
 
 // Variable to hold API Key
@@ -42,10 +84,15 @@ var getParameters = function (){
     var searchParameters=document.location.search.split('&');
     var query = searchParameters[0].split('=').pop();
     getAPI(query);
-    saveLocal(query);
+    getLocal(query);
 }
-var getNewParameters= function(citySearchBar) {
+var getNewParameters= function(event) {
+    event.preventDefault();
+    console.log('inside get new parameters');
+    var citySearchBar = document.querySelector('#citysearchbar').value;
     console.log(citySearchBar);
+    getAPI(citySearchBar);
+    saveLocal(citySearchBar);
 }
 
 // Function to print current weather conditions
@@ -149,7 +196,7 @@ function getAPI(query) {
         
      
 }
-var citySearchBar = document.querySelector('.citysearchbar').value;
-var newCitySearch = document.querySelector('.citysearch');
-newCitySearch.addEventListener('submit', getNewParameters(citySearchBar));
+
+newCitySearch.addEventListener('submit', getNewParameters);
 getParameters();
+getNewLocal();
