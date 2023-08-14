@@ -8,9 +8,9 @@ var icon =document.getElementById('icon');
 var dayOne=document.getElementById('day1');
 var dayTwo=document.getElementById('day2');
 var cardHolderEl=document.querySelector('.cardholder');
-// var citySearchBar = document.querySelector('#citysearchbar');
 var newCitySearch = document.querySelector('#citysearchform');
 
+// Empty array to hold new searches
 var newSearchHistoryArray=[];
 
 // Function to save search results to local storage
@@ -24,7 +24,7 @@ var getLocal = function() {
     for (var i=0; i<searchHistory.length; i++) {
         var historyButton=document.createElement('a');
         historyButton.innerHTML=searchHistory[i] + "<br>";
-        historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + searchHistory[i]);
+        historyButton.setAttribute('href', 'https://crissyg923.github.io/weather-or-not/search-results.html?q=' + searchHistory[i]);
         searchHistoryEl.appendChild(historyButton);
     
     }
@@ -40,7 +40,7 @@ var getNewLocal=function (){
     for (var i=0; i<searchHistory2.length; i++) {
         var historyButton=document.createElement('a');
         historyButton.innerHTML=searchHistory2[i] + "<br>";
-        historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + searchHistory2[i]);
+        historyButton.setAttribute('href', 'https://crissyg923.github.io/weather-or-not/search-results.html?q=' + searchHistory2[i]);
         searchHistoryEl.appendChild(historyButton);
     
     }
@@ -50,29 +50,15 @@ var getNewLocal=function (){
     
 
 
-
+// Saves new searches to "newSearchHistoryArray"
 var saveLocal = function (citySearchBar) {
-    // var searchHistoryEl=document.getElementById('searchhistorylist');
+    
     
     newSearchHistoryArray.push(citySearchBar);
 
     localStorage.setItem('newSearchHistory', JSON.stringify(newSearchHistoryArray));
 
-    // for (var i=0; i<newSearchHistoryArray.length; i++) {
-    //     var historyButton=document.createElement('a');
-    //     historyButton.innerHTML=newSearchHistoryArray[i] + "<br>";
-    //     historyButton.setAttribute('href', 'file:///Users/cbricks/bootcamp/practice/weather-or-not/search-results.html?q=' + newSearchHistoryArray[i]);
-    //     searchHistoryEl.appendChild(historyButton);
     
-    // }
-//     if(localStorage.getItem('newSearchHistory')) {
-//         newSearchHistory= JSON.parse(localStorage.getItem('newSearchHistory'));
-//         newSearchHistory.push(citySearchBar);
-//         // localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-// }
-
-
-// JSON.parse(localStorage.getItem(newSearchHistory));
 }
 
 // Variable to hold API Key
@@ -86,6 +72,8 @@ var getParameters = function (){
     getAPI(query);
     getLocal(query);
 }
+
+// Function to grab parameters of new search on results page
 var getNewParameters= function(event) {
     event.preventDefault();
     console.log('inside get new parameters');
@@ -140,9 +128,6 @@ for (var i=0; i<fiveDayArray.length;i+=8) {
     fiveDayCards.appendChild(windEl);
     fiveDayCards.appendChild(humidityEl);
 
-    // var date= fiveDayArray[i]['dt_txt'].split(" ")[0];
-    // console.log(date);
-    // fiveDayCards.appendChild(date);
 
     cardHolderEl.appendChild(fiveDayCards);
    
@@ -160,9 +145,12 @@ filterList(fiveDayArray);
 
 // Function to request API as a result of user's search input
 function getAPI(query) {
-    var requestURL="http://api.openweathermap.org/geo/1.0/direct?q=" + query + ",US&limit=5&appid=5bb4a513963831304c84229f4658d043"; 
+    var requestURL="https://api.openweathermap.org/geo/1.0/direct?q=" + query + ",US&limit=5&appid=5bb4a513963831304c84229f4658d043"; 
     fetch(requestURL)
     .then(function (response) {
+        if (!response.ok) {
+            throw response.json();
+          }
       return response.json();
         
     })
@@ -173,25 +161,36 @@ function getAPI(query) {
         var longitude = data[0].lon;
         console.log(latitude);
         console.log(longitude);
-        var currentConditionsUrl= "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey + "&units=imperial";
-        var fiveDayRequestUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey + "&units=imperial";
+        var currentConditionsUrl= "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey + "&units=imperial";
+        var fiveDayRequestUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey + "&units=imperial";
         fetch(fiveDayRequestUrl)
             .then(function (response) {
+                if (!response.ok) {
+                    throw response.json();
+                }
                 return response.json();
             })
             .then(function (data1) {
                 console.log(data1);
                 printFiveDay(data1);
             })
+        .catch(function (error) {
+            console.error(error);
+            });
         fetch(currentConditionsUrl)
             .then(function (response) {
+                if (!response.ok) {
+                    throw response.json();
+                }
                 return response.json();
             })
             .then(function (data2) {
                 console.log(data2);
                 printCurrentWeather(data2);
             })
-        
+        .catch(function (error) {
+            console.error(error);
+        })
         })
         
      
