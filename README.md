@@ -8,7 +8,7 @@
 
 
  
-This project was created to display the current weather as well as a five-day forecast, fulfilling the basic need of finding out current and future weather conditions.   
+This project was created to display the current weather as well as a five-day forecast, fulfilling the basic need of finding out current and future weather conditions. Knowing the weather allows you to properly plan your day's itinerary as well as for the days to come.  Although there are many weather sites out there, this project gave me the opportunity to practice pulling data from an API that is reliant on user submission in addition to creating elements dynamically.  I gained a ton of insight on how to properly do these things and learned that an API with http in the url must be changed to https once deploying to an https endpoint.  I also got the opportunity to learn more about Bootstrap and how to properly build a layout which is great because I was able to spend more time coding the site's functionality and less time on CSS styling.  
 
 ## Installation
 
@@ -40,13 +40,13 @@ When you are done, save your changes and push them to the repo using the followi
 
 ## Usage 
 
-You can use this project as a basic guideline to create your own weather forecasting app or to simply study basic Javascriot coding skills. 
+You can use this project as a basic guideline to create your own weather forecasting app, study basic Javascript coding skills, or you can contribute by finding ways to improve the code.. 
 
 ## Credits
 
 This site was created with hours of dedication, assistance from Rutgers TA's, tutoring, and various sources found on Google.  Here are a few of the google links that helped me the most:
 
-[Document Ready Function](https://learn.jquery.com/using-jquery-core/document-ready/)
+[Mobile First Responsiveness](https://www.youtube.com/watch?v=o4oCuf19vHc)
 
 [Dayjs Hour Setting](https://day.js.org/docs/en/get-set/hour)
 

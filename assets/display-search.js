@@ -30,6 +30,7 @@ var getLocal = function() {
     }
 }
 
+// Function that grabs searches from local storage and appends them to list
 var getNewLocal=function (){
  var searchHistory2 = JSON.parse(localStorage.getItem('newSearchHistory'));
  var searchHistoryEl=document.getElementById('searchhistorylist');
@@ -50,7 +51,7 @@ var getNewLocal=function (){
     
 
 
-// Saves new searches to "newSearchHistoryArray"
+// Saves new searches from results page to "newSearchHistoryArray"
 var saveLocal = function (citySearchBar) {
     
     
@@ -94,7 +95,7 @@ var printCurrentWeather= function(data2) {
     iconVariable = data2.weather[0]['icon'];
     iconLink = 'https://openweathermap.org/img/wn/' + iconVariable + '@2x.png';
     icon.setAttribute('src', iconLink);
-    // weatherIcon.innerHTML= iconLink;
+    
 }
  
 
@@ -196,6 +197,11 @@ function getAPI(query) {
      
 }
 
+// Function that listens for new search submission
 newCitySearch.addEventListener('submit', getNewParameters);
+
+// Function that grabs parameters from url 
 getParameters();
+
+// Function that grabs new search history
 getNewLocal();

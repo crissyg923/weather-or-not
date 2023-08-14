@@ -1,7 +1,6 @@
 var searchForm = document.querySelector('.searchform');
-// var searchValue = document.querySelector('.search-bar');
 
-
+// Function that handles searches from landing page and saves search to local storage
 function handleSearch(event) {
     event.preventDefault();
     var searchHistory=[];
