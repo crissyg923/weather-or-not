@@ -118,9 +118,9 @@ for (var i=0; i<fiveDayArray.length;i+=8) {
     var temperature = fiveDayArray[i].main['temp'];
     var windConditions = fiveDayArray[i].wind['speed'];
     var humidityConditions= fiveDayArray[i].main['humidity'];
-    temperatureEl.innerHTML = temperature + "°F";
-    windEl.innerHTML = windConditions + " mph";
-    humidityEl.innerHTML = humidityConditions + "%";
+    temperatureEl.innerHTML ="Temp: " + temperature + "°F";
+    windEl.innerHTML = "Wind: " + windConditions + " mph";
+    humidityEl.innerHTML = "Humidity: " + humidityConditions + "%";
     fiveDayCards.classList.add('fivedaycard');
     fiveDayCards.appendChild(dateEl);
     fiveDayCards.appendChild(weatherIconEl)

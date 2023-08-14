@@ -6,6 +6,7 @@ header {
 }
 .resultstext{
     margin-top: 10px;
+    border: 2px solid magenta;
 }
 /* .fiveday {
     border: solid black;
