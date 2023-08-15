@@ -46,11 +46,11 @@ You can use this project as a basic guideline to create your own weather forecas
 
 ## Credits
 
-This site was created with hours of dedication, assistance from Rutgers TA's, tutoring, and various sources found on Google.  Here are a few of the google links that helped me the most:
+This site was created with hours of dedication, assistance from Rutgers TA's, tutoring, the OpenWeather API documentation, and various sources found on Google.  In addition, following various classwork assignments from Module 6 guided me in creating most of my code independently.  The following link also helped me in creating my code:
 
 [Mobile First Responsiveness](https://www.youtube.com/watch?v=o4oCuf19vHc)
 
-[Dayjs Hour Setting](https://day.js.org/docs/en/get-set/hour)
+
 
 
 
