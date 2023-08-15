@@ -6,6 +6,8 @@
 * [Link to Repo](https://github.com/crissyg923/weather-or-not)
 * [Link to Deployed Site](https://crissyg923.github.io/weather-or-not/)
 
+![Depolyed Site](/images/Screenshot%202023-08-15%20at%2012.37.40%20AM.png)
+
 
  
 This project was created to display the current weather as well as a five-day forecast, fulfilling the basic need of finding out current and future weather conditions. Knowing the weather allows you to properly plan your day's itinerary as well as for the days to come.  Although there are many weather sites out there, this project gave me the opportunity to practice pulling data from an API that is reliant on user submission in addition to creating elements dynamically.  I gained a ton of insight on how to properly do these things and learned that an API with http in the url must be changed to https once deploying to an https endpoint.  I also got the opportunity to learn more about Bootstrap and how to properly build a layout which is great because I was able to spend more time coding the site's functionality and less time on CSS styling.  
